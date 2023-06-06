@@ -1,9 +1,9 @@
 import "./App.css";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-function App() {
-  //if (error) return <div>{news}</div>;
+const App = () => {
   return <div className="App"></div>;
-}
+};
 
 export default App;
