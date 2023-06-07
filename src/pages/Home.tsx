@@ -1,17 +1,43 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import { getNews } from "../api/api";
-import { INewsParams } from "../interfaces/news";
+import { ITopNews } from "../interfaces/news";
 
-const newsParams = {
+const params = {
   endpoint: "/top-headlines",
-  options: { country: "us" },
+  options: { country: "us", page: 1 },
 };
 
 export const Home: React.FC = () => {
-  const { isLoading, isError, error, data } = useQuery(["topNews", newsParams], () =>
-    getNews(newsParams)
+  const [news, setNews] = useState<ITopNews[]>([]);
+  const [newsParams, setNewsParams] = useState(params);
+  const { isLoading, isError, error, data } = useQuery(
+    ["topNews", newsParams.options.page],
+    () => getNews(newsParams),
+    {
+      onSuccess: (data) => {
+        setNews((prevState) => [...prevState, ...data?.articles]);
+      },
+    }
   );
-  if (!isLoading) console.log(data);
-  return <div>Home Page</div>;
+
+  const loadMore = () => {
+    if (data && news.length < data?.totalResults) {
+      setNewsParams((prevState) => ({
+        ...prevState,
+        options: {
+          ...prevState.options,
+          page: prevState.options.page + 1,
+        },
+      }));
+    }
+  };
+
+  if (!isLoading) console.log(newsParams.options.page, news);
+  return (
+    <>
+      <div>Home Page</div>
+      <button onClick={() => loadMore()}>load more...</button>
+    </>
+  );
 };
