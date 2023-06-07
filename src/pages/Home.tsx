@@ -15,9 +15,8 @@ export const Home: React.FC = () => {
     ["topNews", newsParams.options.page],
     () => getNews(newsParams),
     {
-      onSuccess: (data) => {
-        setNews((prevState) => [...prevState, ...data?.articles]);
-      },
+      refetchOnWindowFocus: false,
+      onSuccess: (data) => setNews((prevState) => [...prevState, ...data?.articles]),
     }
   );
 
@@ -25,10 +24,7 @@ export const Home: React.FC = () => {
     if (data && news.length < data?.totalResults) {
       setNewsParams((prevState) => ({
         ...prevState,
-        options: {
-          ...prevState.options,
-          page: prevState.options.page + 1,
-        },
+        options: { ...prevState.options, page: prevState.options.page + 1 },
       }));
     }
   };
