@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { getNews } from "../api/api";
 import { ITopNews } from "../interfaces/news";
+import { Header } from "../components/Header/Header";
 
 const params = {
   endpoint: "/top-headlines",
@@ -32,7 +33,7 @@ export const Home: React.FC = () => {
   if (!isLoading) console.log(newsParams.options.page, news);
   return (
     <>
-      <div>Home Page</div>
+      <Header />
       <button onClick={() => loadMore()}>load more...</button>
     </>
   );
