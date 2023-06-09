@@ -36,7 +36,7 @@ export const Statusbar: React.FC = () => {
     }));
   }, [country]);
 
-  let weatherInfo = `${data?.current.temp_c}°   ${data?.location.name}`;
+  let weatherInfo = `${data?.current.temp_c}°C   ${data?.location.name}`;
   if (isError) {
     weatherInfo = "Weather unavailable";
   }
@@ -44,8 +44,14 @@ export const Statusbar: React.FC = () => {
   return (
     <div className="w-full h-6 bg-[#222222] px-[20px] md:px-[100px]">
       <div className="w-full h-full max-w-[1200px] flex justify-between items-center mx-auto">
-        {!isLoading ? <p className="font-bolt text-white">{weatherInfo}</p> : <p>Loading...</p>}
-        <p className="font-bolt text-white">{formatedDate}</p>
+        <div className="md:flex gap-5">
+          {!isLoading ? (
+            <p className="font-bolt text-white">{weatherInfo}</p>
+          ) : (
+            <p className="text-white">Loading...</p>
+          )}
+          <p className="font-bolt text-white">{formatedDate}</p>
+        </div>
         <div className="hidden md:flex gap-3">
           <FacebookIcon sx={{ ...styles }} />
           <InstagramIcon sx={{ ...styles }} />
