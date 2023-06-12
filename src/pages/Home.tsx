@@ -4,7 +4,7 @@ import { getNews } from "../api/api";
 import { ITopNews } from "../interfaces/news";
 import { Header } from "../components/Header/Header";
 import { CountryContext } from "../context/context";
-
+import { HomeNews } from "../components/NewsDisplay/HomeNews";
 const params = {
   endpoint: "/top-headlines",
   options: { country: "us", page: 1 },
@@ -45,9 +45,12 @@ export const Home: React.FC = () => {
   }, [newsParams.options.country, refetch]);
 
   return (
-    <>
+    <div className="w-full">
       <Header />
-      <button onClick={() => loadMore()}>load more...</button>
-    </>
+      <HomeNews news={news} />
+      <button onClick={loadMore} className="px-4 py-2 my-10 font-medium bg-red-800 text-white">
+        load more...
+      </button>
+    </div>
   );
 };
