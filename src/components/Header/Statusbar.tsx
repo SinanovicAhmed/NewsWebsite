@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getWeather } from "../../api/weatherapi";
 import React, { useState, useContext, useEffect } from "react";
 import { CountryContext } from "../../context/context";
-import { countryData } from "../../JSON/countryData";
+import { countryData } from "../../constants/countryData";
 
 const styles = {
   color: "white",
@@ -53,10 +53,18 @@ export const Statusbar: React.FC = () => {
           <p className="font-bolt text-white">{formatedDate}</p>
         </div>
         <div className="hidden md:flex gap-3">
-          <FacebookIcon sx={{ ...styles }} />
-          <InstagramIcon sx={{ ...styles }} />
-          <TwitterIcon sx={{ ...styles }} />
-          <YouTubeIcon sx={{ ...styles }} />
+          <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
+            <FacebookIcon sx={{ ...styles }} />
+          </a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+            <InstagramIcon sx={{ ...styles }} />
+          </a>
+          <a href="https://twitter.com/" target="_blank" rel="noreferrer">
+            <TwitterIcon sx={{ ...styles }} />
+          </a>
+          <a href="https://www.youtube.com/" target="_blank" rel="noreferrer">
+            <YouTubeIcon sx={{ ...styles }} />
+          </a>
         </div>
       </div>
     </div>

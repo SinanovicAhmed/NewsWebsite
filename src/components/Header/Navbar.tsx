@@ -1,6 +1,6 @@
 import SearchIcon from "@mui/icons-material/Search";
 import logo from "../../assets/images/logo.png";
-import { countryData } from "../../JSON/countryData";
+import { countryData } from "../../constants/countryData";
 import { CountryContext } from "../../context/context";
 import { useContext } from "react";
 const styles = {

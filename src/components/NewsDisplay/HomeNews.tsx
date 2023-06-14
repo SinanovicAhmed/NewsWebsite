@@ -15,7 +15,7 @@ export const HomeNews: React.FC<{ news: ITopNews[] }> = (props) => {
       >
         Top News
       </h2>
-      <NewsAll news={news} />
+      <NewsAll newsList={news} />
     </main>
   );
 };
