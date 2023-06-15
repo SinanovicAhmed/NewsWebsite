@@ -12,56 +12,56 @@ export const NewsMain: React.FC<HomeNewsProps> = ({ headerNews }) => {
       <Link
         to={`/details/${headerNews[0]?.title.replaceAll(" ", "-")}`}
         state={headerNews[0]}
-        className="relative cursor-pointer hover:brightness-90 row-span-1 col-span-6 xs:row-span-3 xs:col-span-2 sm:row-span-6"
+        className="relative cursor-pointer hover:brightness-75 row-span-1 col-span-6 xs:row-span-3 xs:col-span-2 sm:row-span-6"
       >
         <img
           src={headerNews[0]?.urlToImage || placeholder_img}
           alt="news1"
           className="object-cover w-full h-full"
         />
-        <div className="absolute p-2 xs:text-[12px] sm:text-[18px] bottom-0 left-0 text-white font-bold leading-tight bg-black bg-opacity-50">
+        <div className="absolute p-2 text-[14px] md:text-[18px] bottom-0 left-0 text-white font-bold leading-tight bg-black bg-opacity-50">
           {headerNews[0]?.title}
         </div>
       </Link>
       <Link
         to={`/details/${headerNews[1]?.title.replaceAll(" ", "-")}`}
         state={headerNews[1]}
-        className="relative cursor-pointer hover:brightness-90 row-span-1 col-span-6 xs:col-span-2 xs:row-span-3 sm:col-start-3"
+        className="relative cursor-pointer hover:brightness-75 row-span-1 col-span-6 xs:col-span-2 xs:row-span-3 sm:col-start-3"
       >
         <img
           src={headerNews[1]?.urlToImage || placeholder_img}
           alt="news1"
           className="object-cover w-full h-full"
         />
-        <div className="absolute p-2 text-[12px] sm:text-[15px] bottom-0 left-0 text-white font-bold leading-tight bg-black bg-opacity-50">
+        <div className="absolute p-2 text-[14px] md:text-[16px] bottom-0 left-0 text-white font-bold leading-tight bg-black bg-opacity-50">
           {headerNews[1]?.title}
         </div>
       </Link>
       <Link
         to={`/details/${headerNews[2]?.title.replaceAll(" ", "-")}`}
         state={headerNews[2]}
-        className="relative cursor-pointer hover:brightness-90 row-span-1 col-span-6 xs:col-span-2 xs:row-span-3 sm:col-span-1 sm:col-start-3 sm:row-start-4"
+        className="relative cursor-pointer hover:brightness-75 row-span-1 col-span-6 xs:col-span-2 xs:row-span-3 sm:col-span-1 sm:col-start-3 sm:row-start-4"
       >
         <img
           src={headerNews[2]?.urlToImage || placeholder_img}
           alt="news1"
           className="object-cover w-full h-full"
         />
-        <div className="absolute p-2 text-[12px] sm:text-[15px] bottom-0 left-0 text-white font-bold leading-tight bg-black bg-opacity-50">
+        <div className="absolute p-2 text-[14px] md:text-[16px] bottom-0 left-0 text-white font-bold leading-tight bg-black bg-opacity-50">
           {headerNews[2]?.title}
         </div>
       </Link>
       <Link
         to={`/details/${headerNews[3]?.title.replaceAll(" ", "-")}`}
         state={headerNews[3]}
-        className="relative cursor-pointer hover:brightness-90 col-span-6 xs:col-span-2 xs:row-span-3 sm:col-span-1 sm:col-start-4 sm:row-start-4"
+        className="relative cursor-pointer hover:brightness-75 col-span-6 xs:col-span-2 xs:row-span-3 sm:col-span-1 sm:col-start-4 sm:row-start-4"
       >
         <img
           src={headerNews[3]?.urlToImage || placeholder_img}
           alt="news1"
           className="object-cover w-full h-full"
         />
-        <div className="absolute p-2 text-[12px] sm:text-[15px] bottom-0 left-0 text-white font-bold leading-tight bg-black bg-opacity-50">
+        <div className="absolute p-2 text-[14px] md:text-[16px] bottom-0 left-0 text-white font-bold leading-tight bg-black bg-opacity-50">
           {headerNews[3]?.title}
         </div>
       </Link>

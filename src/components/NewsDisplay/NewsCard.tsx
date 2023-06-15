@@ -10,7 +10,7 @@ export const NewsCard: React.FC<{ news: ITopNews }> = ({ news }) => {
     <Link
       to={`/details/${title}`}
       state={news}
-      className="grow bg-gray-100 cursor-pointer border-t-8 border-transparent hover:border-red-800 transition-all"
+      className="grow bg-white shaddow-sm cursor-pointer border-t-8 border-transparent hover:border-red-800 transition-all"
     >
       <img
         src={
@@ -18,11 +18,11 @@ export const NewsCard: React.FC<{ news: ITopNews }> = ({ news }) => {
           "https://www.woodbridgeschool.org.uk/app/uploads/2021/07/placeholder_featured_image.svg"
         }
         alt="newsCard"
-        className="object-cover w-full h-[50%]"
+        className="object-cover w-full max-h-[200px]"
       />
       <div className="p-[5px]">
-        <h2 className="font-black">{trimmedTitle}</h2>
-        <p className="text-ellipsis overflow-hidden pt-[5px] font-thin">{news.description}</p>
+        <h2 className="font-black text-[15px]">{trimmedTitle}</h2>
+        <p className="pt-[5px] text-[15px] font-thin">{news.description}</p>
       </div>
     </Link>
   );

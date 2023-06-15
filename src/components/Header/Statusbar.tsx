@@ -42,15 +42,15 @@ export const Statusbar: React.FC = () => {
   }
 
   return (
-    <div className="w-full h-6 bg-[#222222] px-[20px] md:px-[100px]">
+    <div className="w-full bg-[#222222] px-[20px] md:px-[100px]">
       <div className="w-full h-full max-w-[1200px] flex justify-between items-center mx-auto">
-        <div className="md:flex gap-5">
+        <div className="w-full justify-between md:justify-start flex gap-5">
           {!isLoading ? (
-            <p className="font-bolt text-white">{weatherInfo}</p>
+            <p className="text-white">{weatherInfo}</p>
           ) : (
             <p className="text-white">Loading...</p>
           )}
-          <p className="font-bolt text-white">{formatedDate}</p>
+          <p className="text-white">{formatedDate}</p>
         </div>
         <div className="hidden md:flex gap-3">
           <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">

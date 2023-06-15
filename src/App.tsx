@@ -7,7 +7,7 @@ import { NewsDetails } from "./pages/NewsDetail";
 import { ScrollToTop } from "./components/Helpers/StrollToTop";
 const App = () => {
   return (
-    <div className="App">
+    <div className="App bg-gray-200">
       <CountryProvider>
         <ScrollToTop>
           <Routes>

@@ -16,7 +16,7 @@ export const Navbar: React.FC = () => {
     <div className="w-full h-16 px-[20px] md:px-[100px] shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
       <div className="w-full h-full max-w-[1200px] flex justify-between items-center mx-auto">
         <Link to="/">
-          <img src={logo} alt="logo" width="200" className="hover:cursor-pointer" />
+          <img src={logo} alt="logo" className="hover:cursor-pointer w-[150px] md:w-[200px]" />
         </Link>
         <div className="flex justify-center items-center">
           <SearchIcon sx={{ ...styles }} />
