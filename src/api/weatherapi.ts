@@ -3,7 +3,6 @@ import { IWeatherResponse } from "../interfaces/weather";
 import { INewsParams } from "../interfaces/news";
 const baseURL = process.env.REACT_APP_WEATHER_URL;
 const apiToken = process.env.REACT_APP_WEATHER_TOKEN;
-console.log(baseURL, apiToken);
 
 const newsApi = axios.create({
   baseURL,

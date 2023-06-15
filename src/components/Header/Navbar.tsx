@@ -3,6 +3,7 @@ import logo from "../../assets/images/logo.png";
 import { countryData } from "../../constants/countryData";
 import { CountryContext } from "../../context/context";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 const styles = {
   "&:hover": { color: "DimGray" },
   cursor: "pointer",
@@ -11,11 +12,12 @@ const styles = {
 
 export const Navbar: React.FC = () => {
   const { country, handleCountryChange } = useContext(CountryContext);
-
   return (
     <div className="w-full h-16 px-[20px] md:px-[100px] shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
       <div className="w-full h-full max-w-[1200px] flex justify-between items-center mx-auto">
-        <img src={logo} alt="logo" width="200" className="hover:cursor-pointer" />
+        <Link to="/">
+          <img src={logo} alt="logo" width="200" className="hover:cursor-pointer" />
+        </Link>
         <div className="flex justify-center items-center">
           <SearchIcon sx={{ ...styles }} />
           <select
