@@ -1,19 +1,12 @@
-import { createContext, useState, ReactNode, useEffect } from "react";
-
-interface ICountryContextProps {
-  country: string;
-  handleCountryChange: (selectedCountry: string) => void;
-}
-interface ProviderProps {
-  children: ReactNode;
-}
+import { createContext, useState, useEffect } from "react";
+import { ICountryContextProps, IProviderProps } from "../interfaces/context";
 
 export const CountryContext = createContext<ICountryContextProps>({
   country: "",
   handleCountryChange: () => {},
 });
 
-export const CountryProvider: React.FC<ProviderProps> = ({ children }) => {
+export const CountryProvider: React.FC<IProviderProps> = ({ children }) => {
   const [country, setCountry] = useState("us");
 
   useEffect(() => {
@@ -28,5 +21,9 @@ export const CountryProvider: React.FC<ProviderProps> = ({ children }) => {
     localStorage.setItem("country_code", selectedCountry);
   };
 
-  return <CountryContext.Provider value={{ country, handleCountryChange }}>{children}</CountryContext.Provider>;
+  return (
+    <CountryContext.Provider value={{ country, handleCountryChange }}>
+      {children}
+    </CountryContext.Provider>
+  );
 };
