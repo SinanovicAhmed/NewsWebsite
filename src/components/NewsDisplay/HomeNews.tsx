@@ -11,7 +11,7 @@ export const HomeNews: React.FC<{ news: ITopNews[] }> = (props) => {
       <NewsMain headerNews={headerNews} />
       <h2
         className="max-w-[1200px] pl-[10px] my-[20px] text-red-800 text-left 
-                   border-l-4 border-b-2 border-red-800 font-bold text-[20px] mx-auto"
+                   border-l-8 border-b-2 border-red-800 font-black text-[20px] mx-auto"
       >
         Top News
       </h2>
