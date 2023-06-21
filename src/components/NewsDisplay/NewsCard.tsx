@@ -2,7 +2,12 @@ import { Link } from "react-router-dom";
 import { ITopNews } from "../../interfaces/news";
 
 export const NewsCard: React.FC<{ news: ITopNews }> = ({ news }) => {
-  const trimmedTitle = news.title.substring(0, news.title.lastIndexOf(" - "));
+  let trimmedTitle;
+  if (news.title.includes(" - ")) {
+    trimmedTitle = news.title.substring(0, news.title.lastIndexOf(" - "));
+  } else {
+    trimmedTitle = news.title;
+  }
   const title = news.title.replaceAll(" ", "-");
 
   return (

@@ -10,7 +10,7 @@ const styles = {
   fontSize: { xs: 20, md: 25, lg: 30 },
 };
 
-export const Navbar: React.FC = () => {
+export const Navbar: React.FC<{ toggleSearch: () => void }> = ({ toggleSearch }) => {
   const { country, handleCountryChange } = useContext(CountryContext);
   return (
     <div className="w-full h-16 px-[20px] md:px-[100px] shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
@@ -19,7 +19,7 @@ export const Navbar: React.FC = () => {
           <img src={logo} alt="logo" className="w-[150px] md:w-[200px]" />
         </Link>
         <div className="flex justify-center items-center">
-          <SearchIcon sx={{ ...styles }} />
+          <SearchIcon onClick={toggleSearch} sx={{ ...styles }} />
           <select
             id="contry"
             name="country"
