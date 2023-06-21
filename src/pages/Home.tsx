@@ -1,54 +1,40 @@
-import { useQuery } from "@tanstack/react-query";
-import React, { useContext, useEffect, useState } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import React, { useContext } from "react";
 import { getNews } from "../api/api";
-import { ITopNews } from "../interfaces/news";
 import { Header } from "../components/Header/Header";
 import { CountryContext } from "../context/context";
 import { HomeNews } from "../components/NewsDisplay/HomeNews";
-const params = {
-  endpoint: "/top-headlines",
-  options: { country: "us", page: 1 },
-};
 
 export const Home: React.FC = () => {
   const { country } = useContext(CountryContext);
-  const [news, setNews] = useState<ITopNews[]>([]);
-  const [newsParams, setNewsParams] = useState(params);
-  const { isLoading, isError, error, data, refetch } = useQuery(
-    ["topNews", newsParams.options.page],
-    () => getNews(newsParams),
+  const params = { endpoint: "/top-headlines", options: { country: country } };
+  const { data, hasNextPage, fetchNextPage } = useInfiniteQuery(
+    [params],
+    ({ pageParam = 0, queryKey }) => getNews(queryKey[0], pageParam),
     {
       refetchOnWindowFocus: false,
-      onSuccess: (data) => setNews((prevState) => [...prevState, ...data?.articles]),
+      getNextPageParam(lastPage, pages) {
+        if (pages.length * 20 < lastPage.totalResults) {
+          return pages.length + 1;
+        } else {
+          return undefined;
+        }
+      },
     }
   );
-
-  const loadMore = () => {
-    if (data && news.length < data?.totalResults) {
-      setNewsParams((prevState) => ({
-        ...prevState,
-        options: { ...prevState.options, page: prevState.options.page + 1 },
-      }));
-    }
+  const handleLoadMore = () => {
+    fetchNextPage();
   };
-  //changing country in params when context is changed
-  useEffect(() => {
-    setNewsParams((prevParams) => ({
-      ...prevParams,
-      options: { page: 1, country: country },
-    }));
-  }, [country]);
-  //when country in params change refetch news for that country
-  useEffect(() => {
-    setNews([]);
-    refetch();
-  }, [newsParams.options.country, refetch]);
-
+  const allArticles = data?.pages.flatMap((page) => page.articles) ?? [];
   return (
     <div className="w-full">
       <Header />
-      <HomeNews news={news} />
-      <button onClick={loadMore} className="px-4 py-2 my-10 font-medium bg-red-800 text-white">
+      <HomeNews news={allArticles} />
+      <button
+        disabled={!hasNextPage}
+        onClick={handleLoadMore}
+        className="px-4 py-2 my-10 font-medium bg-red-800 text-white disabled:opacity-25"
+      >
         load more...
       </button>
     </div>

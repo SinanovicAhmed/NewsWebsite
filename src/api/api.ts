@@ -8,11 +8,15 @@ const newsApi = axios.create({
   baseURL,
 });
 
-export const getNews = async ({ endpoint, options }: INewsParams): Promise<ITopNewsResponse> => {
+export const getNews = async (
+  { endpoint, options }: INewsParams,
+  pageParams: number
+): Promise<ITopNewsResponse> => {
   try {
     const response = await newsApi.get(endpoint, {
       params: {
         ...options,
+        page: pageParams,
         apiKey: apiToken,
       },
     });
