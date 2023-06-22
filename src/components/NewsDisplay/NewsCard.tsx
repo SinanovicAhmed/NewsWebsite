@@ -3,12 +3,12 @@ import { ITopNews } from "../../interfaces/news";
 
 export const NewsCard: React.FC<{ news: ITopNews }> = ({ news }) => {
   let trimmedTitle;
-  if (news.title.includes(" - ")) {
+  if (news.title && news.title.includes(" - ")) {
     trimmedTitle = news.title.substring(0, news.title.lastIndexOf(" - "));
   } else {
     trimmedTitle = news.title;
   }
-  const title = news.title.replaceAll(" ", "-");
+  const title = news.title?.replaceAll(" ", "-");
 
   return (
     <Link

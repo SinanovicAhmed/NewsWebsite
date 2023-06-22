@@ -23,7 +23,7 @@ export const Searchbar = () => {
           placeholder="Search"
           className="w-full h-[35px] mr-5 px-5"
         />
-        <button className="px-[15px] py-[5px] bg-red-600 hover:bg-red-800 text-white">
+        <button className="px-[15px] py-[5px] bg-red-700 hover:bg-red-800 text-white">
           Search
         </button>
       </form>

@@ -3,11 +3,17 @@ import { getNews } from "../api/api";
 import { Header } from "../components/Header/Header";
 import { NewsAll } from "../components/NewsDisplay/NewsAll";
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
+import { NewsFilter } from "../components/NewsDisplay/NewsFilter";
 
 export const NewsSearch: React.FC = () => {
   const { state: searchValue } = useLocation();
-  const params = { endpoint: "/everything", options: { q: searchValue, pageSize: 20 } };
-  const { data, hasNextPage, fetchNextPage } = useInfiniteQuery(
+  const [selectedFilter, setSelectedFilter] = useState("publishedAt");
+  const params = {
+    endpoint: "/everything",
+    options: { q: searchValue, pageSize: 20, sortBy: selectedFilter },
+  };
+  const { data, hasNextPage, fetchNextPage, isLoading } = useInfiniteQuery(
     [params],
     ({ pageParam = 1, queryKey }) => getNews(queryKey[0], pageParam),
     {
@@ -29,14 +35,19 @@ export const NewsSearch: React.FC = () => {
     <>
       <Header />
       <div className="w-full px-[20px] md:px-[100px] py-[20px]">
+        <NewsFilter changeFilter={setSelectedFilter} searchValue={searchValue} />
         <NewsAll newsList={allArticles} />
-        <button
-          onClick={handleLoadMore}
-          disabled={!hasNextPage}
-          className="px-4 py-2 my-10 font-medium bg-red-800 text-white"
-        >
-          load more...
-        </button>
+        {!isLoading ? (
+          <button
+            onClick={handleLoadMore}
+            disabled={!hasNextPage}
+            className="px-4 py-2 my-10 font-medium bg-red-800 text-white"
+          >
+            load more...
+          </button>
+        ) : (
+          <p className="h-screen font-bold animate-pulse">Loading...</p>
+        )}
       </div>
     </>
   );
