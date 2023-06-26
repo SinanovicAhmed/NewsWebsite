@@ -3,16 +3,21 @@ import { getNews } from "../api/api";
 import { Header } from "../components/Header/Header";
 import { NewsAll } from "../components/NewsDisplay/NewsAll";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { NewsFilter } from "../components/NewsDisplay/NewsFilter";
+import { CountryContext } from "../context/context";
+import { availableLanguage } from "../helpers/availableLanguage";
 
 export const NewsSearch: React.FC = () => {
+  const { country } = useContext(CountryContext);
+  const language = availableLanguage(country);
   const { state: searchValue } = useLocation();
   const [selectedFilter, setSelectedFilter] = useState("publishedAt");
   const params = {
     endpoint: "/everything",
-    options: { q: searchValue, pageSize: 20, sortBy: selectedFilter },
+    options: { q: searchValue, pageSize: 20, sortBy: selectedFilter, language: language },
   };
+
   const { data, hasNextPage, fetchNextPage, isLoading } = useInfiniteQuery(
     [params],
     ({ pageParam = 1, queryKey }) => getNews(queryKey[0], pageParam),

@@ -8,7 +8,7 @@ export const NewsCard: React.FC<{ news: ITopNews }> = ({ news }) => {
   } else {
     trimmedTitle = news.title;
   }
-  const title = news.title?.replaceAll(" ", "-");
+  const title = news.title?.replaceAll(/[ /]/g, "-");
 
   return (
     <Link
