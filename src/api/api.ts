@@ -1,12 +1,7 @@
 import axios from "axios";
 import { ITopNews, ITopNewsResponse, INewsParams } from "../interfaces/news";
 
-const baseURL = process.env.REACT_APP_API_URL;
-const apiToken = process.env.REACT_APP_API_TOKEN;
-
-const newsApi = axios.create({
-  baseURL,
-});
+const newsApi = axios.create({ baseURL: "http://localhost:8080" });
 
 export const getNews = async (
   { endpoint, options }: INewsParams,
@@ -17,10 +12,9 @@ export const getNews = async (
       params: {
         ...options,
         page: pageParams,
-        apiKey: apiToken,
       },
     });
-    return response.data;
+    return response.data.response;
   } catch (error) {
     throw error;
   }
