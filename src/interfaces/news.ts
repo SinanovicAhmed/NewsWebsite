@@ -26,3 +26,8 @@ export interface INewsParams {
     [key: string]: string | number | boolean;
   };
 }
+
+export interface INewsFilterParams {
+  changeFilter: React.Dispatch<React.SetStateAction<string>>;
+  searchValue: string;
+}
